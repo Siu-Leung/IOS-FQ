@@ -1,0 +1,90 @@
+[General]
+wifi-assist = false
+all-hybrid = false
+udp-priority = false
+internet-test-url = http://www.apple.com/library/test/success.html
+proxy-test-url = http://cp.cloudflare.com/generate_204
+test-timeout = 5
+geoip-maxmind-url = https://raw.githubusercontent.com/Loyalsoldier/geoip/release/Country.mmdb
+ipv6 = false
+ipv6-vif = auto
+allow-wifi-access = false
+wifi-access-http-port = 6152
+wifi-access-socks5-port = 6153
+http-listen = 127.0.0.1:6152
+socks5-listen = 127.0.0.1:6153
+allow-hotspot-access = false
+compatibility-mode = 0
+skip-proxy = 192.168.0.0/24, 10.0.0.0/8, 172.16.0.0/12, 127.0.0.1, localhost, *.local, seed-sequoia.siri.apple.com, sequoia.siri.apple.com, sequoia.apple.com, passenger.t3go.cn, www.baidu.com, yunbusiness.ccb.com, wxh.wo.cn, gate.lagou.com, www.abchina.com.cn, www.shanbay.com, login-service.mobile-bank.psbc.com, mobile-bank.psbc.com
+exclude-simple-hostnames = true
+dns-server = 119.29.29.29, 180.184.1.1, 223.5.5.5, system
+read-etc-hosts = true
+loglevel = notify
+show-error-page-for-reject = true
+always-real-ip = *.msftconnecttest.com, *.msftncsi.com, *.srv.nintendo.net, *.stun.playstation.net, xbox.*.microsoft.com, *.xboxlive.com, *.logon.battlenet.com.cn, *.logon.battle.net, stun.l.google.com
+hijack-dns = *:53
+tun-excluded-routes = 239.255.255.250/32
+udp-policy-not-supported-behaviour = REJECT
+proxy-test-udp = apple.com@8.8.8.8
+hide-vpn-icon = false
+
+[Proxy]
+国内直连 = direct
+广告拦截 = reject
+
+[Proxy Group]
+全球加速 = select, 香港节点, 台湾节点, 日本节点, 狮城节点, 美国节点, 特殊节点
+苹果服务 = select, 国内直连, 香港节点, 台湾节点, 日本节点, 狮城节点, 美国节点, 特殊节点
+港台番剧 = select, 国内直连, 香港节点, 台湾节点
+国际媒体 = select, 全球加速, 香港节点, 台湾节点, 日本节点, 狮城节点, 美国节点, 特殊节点
+电报代理 = select, 狮城节点, 国内直连
+黑白名单 = select, 全球加速, 国内直连
+Siu = select, update-interval=0, policy-path=█████████████, hidden=true
+订阅链接 = select, include-other-group="Siu", update-interval=0, hidden=true
+香港节点 = url-test, include-other-group=订阅链接, update-interval=0, policy-regex-filter=(?=.*(港|HK|(?i)Hong))^((?!(台|日|韩|新|美)).)*$, url=http://www.gstatic.com/generate_204, hidden=false
+台湾节点 = url-test, include-other-group=订阅链接, update-interval=0, policy-regex-filter=(?=.*(台|TW|(?i)Taiwan))^((?!(港|日|韩|新|美)).)*$, url=http://www.gstatic.com/generate_204, hidden=false
+日本节点 = url-test, include-other-group=订阅链接, update-interval=0, policy-regex-filter=(?=.*(日|JP|(?i)Japan))^((?!(港|台|韩|新|美)).)*$, url=http://www.gstatic.com/generate_204, hidden=false
+狮城节点 = url-test, include-other-group=订阅链接, update-interval=0, policy-regex-filter=(?=.*(新|狮|獅|SG|(?i)Singapore))^((?!(港|台|日|韩|美)).)*$, url=http://www.gstatic.com/generate_204, hidden=false
+美国节点 = url-test, include-other-group=订阅链接, update-interval=0, policy-regex-filter=(?=.*(美|US|(?i)States|American))^((?!(港|台|日|韩|新)).)*$, url=http://www.gstatic.com/generate_204, hidden=false
+特殊节点 = select, include-other-group=订阅链接, update-interval=0, policy-regex-filter=^((?!(港|台|日本|新|美|HK|TW|JP|SG|US|直连|广告|到期|流量|剩余)).)*$, hidden=false
+
+[Rule]
+DEST-PORT,123,国内直连
+RULE-SET,https://raw.githubusercontent.com/ConnersHua/RuleGo/master/Surge/Ruleset/Direct+.list,国内直连
+RULE-SET,https://raw.githubusercontent.com/ConnersHua/RuleGo/master/Surge/Ruleset/Extra/Reject/Advertising.list,广告拦截
+RULE-SET,https://raw.githubusercontent.com/ConnersHua/RuleGo/master/Surge/Ruleset/Extra/Reject/Hijacking.list,广告拦截
+RULE-SET,https://raw.githubusercontent.com/ConnersHua/RuleGo/master/Surge/Ruleset/Extra/Reject/Tracking.list,广告拦截
+RULE-SET,https://raw.githubusercontent.com/ConnersHua/RuleGo/master/Surge/Ruleset/Extra/Streaming/!CN.list,国际媒体
+RULE-SET,https://raw.githubusercontent.com/ConnersHua/RuleGo/master/Surge/Ruleset/Extra/Streaming/CN.list,港台番剧
+RULE-SET,https://raw.githubusercontent.com/ConnersHua/RuleGo/master/Surge/Ruleset/Extra/Google/GoogleVoice.list,美国节点
+RULE-SET,https://raw.githubusercontent.com/ConnersHua/RuleGo/master/Surge/Ruleset/Extra/Telegram.list,电报代理
+RULE-SET,https://raw.githubusercontent.com/ConnersHua/RuleGo/master/Surge/Ruleset/Proxy.list,全球加速
+RULE-SET,https://raw.githubusercontent.com/ConnersHua/RuleGo/master/Surge/Ruleset/Extra/Apple/Apple.list,苹果服务
+RULE-SET,https://raw.githubusercontent.com/ConnersHua/RuleGo/master/Surge/Ruleset/Direct.list,国内直连
+RULE-SET,https://raw.githubusercontent.com/ConnersHua/RuleGo/master/Surge/Ruleset/Extra/WeChat.list,国内直连
+RULE-SET,LAN,国内直连
+GEOIP,CN,国内直连
+RULE-SET,https://raw.githubusercontent.com/ConnersHua/RuleGo/master/Surge/Ruleset/Proxy+.list,全球加速
+FINAL,黑白名单,dns-failed
+
+[Host]
+mtalk.google.com = 108.177.125.188
+dl.google.com = server:119.29.29.29
+dl.l.google.com = server:119.29.29.29
+update.googleapis.com = server:119.29.29.29
+*.dl.playstation.net = server:119.29.29.29
+
+[Header Rewrite]
+
+[URL Rewrite]
+^https?:\/\/(www.)?(g|google)\.cn https://www.google.com header
+
+[Script]
+
+[SSID Setting]
+
+[MITM]
+skip-server-cert-verify = true
+h2 = true
+ca-passphrase = Flower
+ca-p12 = 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
