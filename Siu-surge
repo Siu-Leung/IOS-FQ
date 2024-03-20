@@ -29,64 +29,55 @@ ipv6-vif = disabled
 wifi-assist = false
 udp-priority = false
 use-local-host-item-for-proxy = false
-encrypted-dns-server = https://doh-836c5829.doh.pub/dns-query
+encrypted-dns-server = https://doh.pub/dns-query
 
 test-timeout = 4
 proxy-test-url = http://www.gstatic.com/generate_204
 geoip-maxmind-url = https://testingcf.jsdelivr.net/gh/alecthw/mmdb_china_ip_list@release/lite/Country.mmdb
 
-
 [Proxy Group]
 # > 策略组
-Proxy = url-test, HK, US, SG, JP, 手动选择, no-alert=0, hidden=0, include-all-proxies=0
+Proxies = select, HK, US, SG, JP, 手动选择, no-alert=0, hidden=0, include-all-proxies=0
 GlobalMedia = select, HK, US, SG, JP
-# > 外部节点
+# > 外部节点   https://sub.store/download/collection/Siu替换自己的就可以用了
 HK = select, policy-path=https://sub.store/download/collection/Siu, update-interval=0, policy-regex-filter=(🇭🇰)|(港)|(Hong)|(HK), no-alert=0, hidden=0, include-all-proxies=0
 TW = select, policy-path=https://sub.store/download/collection/Siu, update-interval=0, policy-regex-filter=(🇨🇳)|(台)|(Tai)|(TW), no-alert=0, hidden=0, include-all-proxies=0
 US = select, policy-path=https://sub.store/download/collection/Siu, update-interval=0, policy-regex-filter=(🇺🇸)|(美)|(States)|(US), no-alert=0, hidden=0, include-all-proxies=0
 JP = select, policy-path=https://sub.store/download/collection/Siu, update-interval=0, policy-regex-filter=(🇯🇵)|(日)|(Japan)|(JP), no-alert=0, hidden=0, include-all-proxies=0
 SG = select, policy-path=https://sub.store/download/collection/Siu, update-interval=0, policy-regex-filter=(🇸🇬)|(新)|(Singapore)|(SG), no-alert=0, hidden=0, include-all-proxies=0
-特殊节点 = select, policy-path=p=https://sub.store/download/collection/Siu, update-interval=0, policy-regex-filter=^((?!(港|台|日本|新|美|HK|TW|JP|SG|US|直连|广告|到期|流量|剩余)).)*$, hidden=false
+特殊节点 = select, policy-path=https://sub.store/download/collection/Siu, update-interval=0, policy-regex-filter=^((?!(港|台|日本|新|美|HK|TW|JP|SG|US|直连|广告|到期|流量|剩余)).)*$, hidden=false
 手动选择 = select, policy-path=https://sub.store/download/collection/Siu, update-interval=0, no-alert=0, hidden=0, include-all-proxies=0
-YouTube = select,Proxies,HK,JP,SG,TW,US
-Netflix = select,Proxies,HK,JP,SG,TW,US
-Disney = select,Proxies,HK,JP,SG,TW,US
-Bahamut = select,Proxies,HK,TW
-Bilibili = select,DIRECT,HK,TW
-Spotify = select,Proxies,DIRECT,HK,JP,SG,TW,US
-Steam = select,Proxies,DIRECT,HK,JP,SG,TW,US
-Telegram = select,Proxies,HK,JP,SG,TW,US
-Google = select,Proxies,HK,JP,SG,TW,US
-Microsoft = select,Proxies,DIRECT,HK,JP,SG,TW,US
-OpenAI = select,Proxies,HK,JP,SG,TW,US
-PayPal = select,Proxies,DIRECT,HK,JP,SG,TW,US
-Apple = select,Proxies,DIRECT,HK,JP,SG,TW,US
-
+YouTube = select, Proxies, HK, JP, SG, TW, US
+Netflix = select, Proxies, HK, JP, SG, TW, US
+Disney = select, Proxies, HK, JP, SG, TW, US
+Bahamut = select, Proxies, HK, TW
+Bilibili = select, DIRECT, HK, TW
+Spotify = select, Proxies, DIRECT, HK, JP, SG, TW, US
+Steam = select, Proxies, DIRECT, HK, JP, SG, TW, US
+Telegram = select, Proxies, HK, JP, SG, TW, US
+Google = select, Proxies, HK, JP, SG, TW, US
+Microsoft = select, Proxies, DIRECT, HK, JP, SG, TW, US
+OpenAI = select, Proxies, HK, JP, SG, TW, US
+PayPal = select, Proxies, DIRECT, HK, JP, SG, TW, US
+Apple = select, Proxies, DIRECT, HK, JP, SG, TW, US
+Final = select, Proxies, DIRECT
 
 [Rule]
-DOMAIN,flowercloud.xyz,DIRECT // Flower
-DOMAIN,uicdqg.xyz,DIRECT,extended-matching // Amy机场
-DOMAIN,tagcdnsub.work,DIRECT // Tagcdn
-DOMAIN,dy.smjc.top,DIRECT
 RULE-SET,https://raw.githubusercontent.com/AGWA5783/Profiles/master/Surge/Ruleset/Unbreak.list,DIRECT,update-interval=86400
 RULE-SET,https://raw.githubusercontent.com/AGWA5783/Profiles/master/Surge/Ruleset/StreamingMedia/Video/YouTube.list,YouTube,update-interval=86400
 RULE-SET,https://raw.githubusercontent.com/AGWA5783/Profiles/master/Surge/Ruleset/StreamingMedia/Video/Netflix.list,Netflix,update-interval=86400
-RULE-SET,https://raw.githubusercontent.com/AGWA5783/Profiles/master/Surge/Ruleset/StreamingMedia/Video/DisneyPlus.list,Disney,update-interval=86400
-RULE-SET,https://raw.githubusercontent.com/AGWA5783/Profiles/master/Surge/Ruleset/StreamingMedia/Video/Bahamut.list,Bahamut,update-interval=86400
 RULE-SET,https://raw.githubusercontent.com/AGWA5783/Profiles/master/Surge/Ruleset/StreamingMedia/StreamingSE.list,Bilibili,update-interval=86400
 RULE-SET,https://raw.githubusercontent.com/AGWA5783/Profiles/master/Surge/Ruleset/StreamingMedia/Music/Spotify.list,Spotify,update-interval=86400
-RULE-SET,https://raw.githubusercontent.com/AGWA5783/Profiles/master/Surge/Ruleset/Extra/Game/Steam.list,Steam,update-interval=86400
 RULE-SET,https://raw.githubusercontent.com/AGWA5783/Profiles/master/Surge/Ruleset/Extra/Telegram/Telegram.list,Telegram,update-interval=86400
 RULE-SET,https://raw.githubusercontent.com/AGWA5783/Profiles/master/Surge/Ruleset/Extra/Google/Google.list,Google,update-interval=86400
 RULE-SET,https://raw.githubusercontent.com/AGWA5783/Profiles/master/Surge/Ruleset/Extra/Microsoft/Microsoft.list,Microsoft,update-interval=86400
 RULE-SET,https://raw.githubusercontent.com/AGWA5783/Profiles/master/Surge/Ruleset/Extra/OpenAI/OpenAI.list,OpenAI,update-interval=86400
-RULE-SET,https://raw.githubusercontent.com/AGWA5783/Profiles/master/Surge/Ruleset/Extra/PayPal.list,PayPal,update-interval=86400
 RULE-SET,https://raw.githubusercontent.com/AGWA5783/Profiles/master/Surge/Ruleset/Extra/Apple/Apple.list,Apple,update-interval=86400
 RULE-SET,https://raw.githubusercontent.com/AGWA5783/Profiles/master/Surge/Ruleset/Global.list,Proxies,update-interval=86400
 RULE-SET,https://raw.githubusercontent.com/AGWA5783/Profiles/master/Surge/Ruleset/China.list,DIRECT,update-interval=86400
 RULE-SET,https://raw.githubusercontent.com/AGWA5783/Profiles/master/Surge/Ruleset/LocalAreaNetwork.list,DIRECT,update-interval=86400
 GEOIP,CN,DIRECT
-FINAL,Final
+FINAL,Proxies
 
 [MITM]
 skip-server-cert-verify = true
